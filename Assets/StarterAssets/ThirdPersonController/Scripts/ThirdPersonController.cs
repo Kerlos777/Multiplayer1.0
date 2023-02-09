@@ -172,7 +172,13 @@ namespace StarterAssets
             GroundedCheck();
             Move();
         }
-
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            if(IsLocalPlayer)   
+            GameObject.FindGameObjectWithTag("CameraFollow").GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = transform.GetChild(0).transform;
+        }
+        
         private void LateUpdate()
         {
             CameraRotation();
